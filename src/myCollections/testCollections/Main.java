@@ -24,7 +24,7 @@ public class Main {
         collection.add("12");
         System.out.println(collection);
         System.out.println("   (size after adding= "+collection.size()+")");
-        System.out.println("get index 1 - "+collection.get(1));
+        System.out.println("get index 2 - "+collection.get(2));
         collection.clear();
         System.out.println(collection);
         System.out.println("   (size after clean= "+collection.size()+")");
@@ -49,7 +49,7 @@ public class Main {
         myLinkedList.add("12");
         System.out.println(myLinkedList);
         System.out.println("   (size after adding= "+myLinkedList.size()+")");
-        System.out.println("get index 1 - "+myLinkedList.get(1));
+        System.out.println("get index 2 - "+myLinkedList.get(2));
         myLinkedList.clear();
         System.out.println(myLinkedList);
         System.out.println("   (size after clean= "+myLinkedList.size()+")");
@@ -120,8 +120,7 @@ public class Main {
 
         System.out.println("");
         System.out.println(" -- MyHashMap -- ");
-        MyHashMap  map;
-        map = new MyHashMap<Integer,String>();
+        MyHashMap<Integer,String> map = new MyHashMap<>();
         map.put(11,"First");
         map.put(22,"Second");
         map.put(33,"Third");
