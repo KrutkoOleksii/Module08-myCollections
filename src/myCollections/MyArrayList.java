@@ -32,14 +32,13 @@ public class MyArrayList<T> implements IList<T>{
     }
 
     @Override
-    public boolean remove(int index) {
+    public void remove(int index) {
         Object[] newArr = new Object [myArrayList.length];
         System.arraycopy(myArrayList, 0, newArr, 0, index);
         // остальное сдвинуть на 1 влево
         System.arraycopy(myArrayList, index+1, newArr, index, size-index);
         size--;
         myArrayList = newArr;
-        return false;
     }
 
     @Override

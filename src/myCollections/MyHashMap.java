@@ -31,7 +31,7 @@ public class MyHashMap<K,V> implements IMyMap<K,V>{
 
     //удаляет пару по ключу
     @Override
-    public boolean remove(Object key) {
+    public void remove(Object key) {
         int index = -1;
         for(int i=0; i < table.length;i++){
             if(key.equals(table[i].getKey())){
@@ -47,9 +47,7 @@ public class MyHashMap<K,V> implements IMyMap<K,V>{
             }
             table = newTable;
             size--;
-            return true;
         }
-        return false;
     }
 
     //очищает коллекцию
