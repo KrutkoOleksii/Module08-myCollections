@@ -6,72 +6,62 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println(" -- MyArrayList -- ");
+        String[] myArr = {"First", "Second", "Third", "Forth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth",
+                "Eleventh", "Twelfth", "Thirteenth", "Fourteenth", "Fifteenth"};
+
+        System.out.println(" - - - - - - - - - - - ");
+        System.out.println(" - - MyArrayList - - ");
         MyArrayList <String> collection = new MyArrayList<>();
-        collection.add("First");
-        collection.add("Second");
-        collection.add("Third");
-        collection.add("Forth");
-        collection.add("Fifth");
-        collection.add("6");
-        collection.add("7");
-        collection.add("8");
-        collection.add("9");
-        collection.add("10");
+        for (int i=0;i<10;i++){
+            collection.add(myArr[i]);
+        }
         System.out.println(collection);
         System.out.println("   (size = "+collection.size()+")");
-        collection.add("11");
-        collection.add("12");
+        for (int i=10;i<15;i++){
+            collection.add(myArr[i]);
+        }
         System.out.println(collection);
         System.out.println("   (size after adding= "+collection.size()+")");
         System.out.println("get index 2 - "+collection.get(2));
+        collection.remove(2);
+        System.out.println(collection);
+        System.out.println("   (size after remove [2] = "+collection.size()+")");
         collection.clear();
         System.out.println(collection);
         System.out.println("   (size after clean= "+collection.size()+")");
 
-
-        System.out.println("");
-        System.out.println(" -- MyLinkedList -- ");
+        System.out.println("\n \n  - - - - - - - - - - - ");
+        System.out.println(" - - MyLinkedList - - ");
         MyLinkedList <String> myLinkedList = new MyLinkedList<>();
-        myLinkedList.add("First");
-        myLinkedList.add("Second");
-        myLinkedList.add("Third");
-        myLinkedList.add("Forth");
-        myLinkedList.add("Fifth");
-        myLinkedList.add("6");
-        myLinkedList.add("7");
-        myLinkedList.add("8");
-        myLinkedList.add("9");
-        myLinkedList.add("10");
+        for (int i=0;i<10;i++){
+            myLinkedList.add(myArr[i]);
+        }
         System.out.println(myLinkedList);
         System.out.println("   (size = "+myLinkedList.size()+")");
-        myLinkedList.add("11");
-        myLinkedList.add("12");
+        for (int i=10;i<15;i++){
+            myLinkedList.add(myArr[i]);
+        }
         System.out.println(myLinkedList);
         System.out.println("   (size after adding= "+myLinkedList.size()+")");
         System.out.println("get index 2 - "+myLinkedList.get(2));
+        myLinkedList.remove(2);
+        System.out.println(myLinkedList);
+        System.out.println("   (size after remove [2] = "+myLinkedList.size()+")");
         myLinkedList.clear();
         System.out.println(myLinkedList);
         System.out.println("   (size after clean= "+myLinkedList.size()+")");
 
-
-        System.out.println("");
-        System.out.println(" -- MyQueue -- ");
+        System.out.println("\n \n  - - - - - - - - - - - ");
+        System.out.println(" - - MyQueue - - ");
         MyQueue<String> queue = new MyQueue<>();
-        queue.add("First");
-        queue.add("Second");
-        queue.add("Third");
-        queue.add("Forth");
-        queue.add("Fifth");
-        queue.add("6");
-        queue.add("7");
-        queue.add("8");
-        queue.add("9");
-        queue.add("10");
+        for (int i=0;i<10;i++){
+            queue.add(myArr[i]);
+        }
         System.out.println(queue);
         System.out.println("   (size = "+queue.size()+")");
-        queue.add("11");
-        queue.add("12");
+        for (int i=10;i<15;i++){
+            queue.add(myArr[i]);
+        }
         System.out.println(queue);
         System.out.println("   (size after add = "+queue.size()+")");
         queue.remove(2);
@@ -86,24 +76,17 @@ public class Main {
         System.out.println(queue);
         System.out.println("   (size after clean= "+queue.size()+")");
 
-
-        System.out.println("");
-        System.out.println(" -- MyStack -- ");
+        System.out.println("\n \n  - - - - - - - - - - - ");
+        System.out.println(" - - MyStack - - ");
         MyStack<String> stack = new MyStack<>();
-        stack.push("First");
-        stack.push("Second");
-        stack.push("Third");
-        stack.push("Forth");
-        stack.push("Fifth");
-        stack.push("6");
-        stack.push("7");
-        stack.push("8");
-        stack.push("9");
-        stack.push("10");
-        System.out.println(collection);
+        for (int i=0;i<10;i++){
+            stack.push(myArr[i]);
+        }
+        System.out.println(stack);
         System.out.println("   (size = "+stack.size()+")");
-        stack.push("11");
-        stack.push("12");
+        for (int i=10;i<15;i++){
+            stack.push(myArr[i]);
+        }
         System.out.println(stack);
         System.out.println("   (size after add = "+stack.size()+")");
         stack.remove(2);
@@ -118,32 +101,27 @@ public class Main {
         System.out.println(stack);
         System.out.println("   (size after clean= "+stack.size()+")");
 
-        System.out.println("");
+        System.out.println("\n \n  - - - - - - - - - - - ");
         System.out.println(" -- MyHashMap -- ");
         MyHashMap<Integer,String> map = new MyHashMap<>();
-        map.put(11,"First");
-        map.put(22,"Second");
-        map.put(33,"Third");
-        map.put(44,"Forth");
-        map.put(55,"Fifth");
-        map.put(66,"6");
-        map.put(77,"7");
-        map.put(88,"8");
-        map.put(99,"9");
-        map.put(110,"10");
+        for (int i=0;i<10;i++){
+            map.put(i, myArr[i]);
+        }
         System.out.println(map);
         System.out.println("   (size = "+map.size()+")");
-        map.put(111,"11");
-        map.put(222,"12");
+        for (int i=10;i<15;i++){
+            map.put(i, myArr[i]);
+        }
         System.out.println(map);
         System.out.println("   (size after add= "+map.size()+")");
-        map.remove(66);
+        map.remove(5);
         System.out.println(map);
-        System.out.println("    (size after remove [key 66]= "+map.size()+")");
-        System.out.println(" (key 88, value = "+map.get(88)+")");
-        System.out.println(" (key 222, value = "+map.get(222)+")");
-        System.out.println(" (key 333, value = "+map.get(333)+")");
+        System.out.println("    (size after remove [key 5]= "+map.size()+")");
+        System.out.println(" (key 7, value = "+map.get(7)+")");
+        System.out.println(" (key 12, value = "+map.get(12)+")");
+        System.out.println(" (key 16, value = "+map.get(16)+")");
         map.clear();
+        System.out.println(map);
         System.out.println("    (size after clear= "+map.size()+")");
     }
 }

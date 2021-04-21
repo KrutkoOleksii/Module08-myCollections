@@ -23,7 +23,7 @@ public class MyArrayList<T> implements IList<T>{
     @Override
     public void add(T value) {
         if(size == myArrayList.length) {
-            Object[] newArr = new Object [myArrayList.length+DEFAULT_LENGTH];
+            Object[] newArr = new Object [myArrayList.length * 3 / 2 + 1];
             System.arraycopy(myArrayList, 0, newArr, 0, myArrayList.length);
             myArrayList = newArr;
         }
@@ -43,7 +43,7 @@ public class MyArrayList<T> implements IList<T>{
 
     @Override
     public void clear() {
-        myArrayList = EMPTY_ARRAY;
+        myArrayList = new Object[DEFAULT_LENGTH];;
         size = 0;
     }
 
@@ -62,11 +62,12 @@ public class MyArrayList<T> implements IList<T>{
 
     @Override
     public String toString() {
-        String arr = "[";
+        String arr = "{";
         for(Object element: myArrayList) {
-            arr+=" "+element+" ";
+            if(!arr.equals("{")) { arr+=", ";}
+            arr+=element;
         }
-        arr+="]";
+        arr+="}";
         return arr;
     }
 }

@@ -1,13 +1,11 @@
 package myCollections;
 
-import java.util.Objects;
-
 public class MyHashMap<K,V> implements IMyMap<K,V>{
-    private NodePair<K,V> [] table;
+    private Pair<K,V>[] table;
     private int size;
 
     public MyHashMap() {
-        table = new NodePair[10];
+        table = new Pair[10];
         size = 0;
     }
 
@@ -25,8 +23,8 @@ public class MyHashMap<K,V> implements IMyMap<K,V>{
         if(table.length==size){
             resize();
         }
-        NodePair<K,V> nodePair = new NodePair<>(key, value);
-        table[size++] = nodePair;
+        Pair<K,V> pair = new Pair<>(key, value);
+        table[size++] = pair;
     }
 
     //удаляет пару по ключу
@@ -40,10 +38,10 @@ public class MyHashMap<K,V> implements IMyMap<K,V>{
             }
         }
         if(index >= 0){
-            NodePair<K,V> [] newTable = (NodePair<K, V>[]) new NodePair[table.length];
+            Pair<K,V>[] newTable = (Pair<K, V>[]) new Pair[table.length];
             System.arraycopy(table,0,newTable,0,index);
             if(index<size) {
-                System.arraycopy(table,index+1,newTable,index,size-index);
+                System.arraycopy(table,index+1,newTable,index,size-index-1);
             }
             table = newTable;
             size--;
@@ -53,6 +51,7 @@ public class MyHashMap<K,V> implements IMyMap<K,V>{
     //очищает коллекцию
     @Override
     public void clear(){
+        table = new Pair[10];
         size = 0;
     }
 
@@ -74,8 +73,8 @@ public class MyHashMap<K,V> implements IMyMap<K,V>{
     }
 
     public void resize() {
-        int newSize = table.length * 3 / 2;
-        NodePair<K,V> [] newTable = (NodePair<K, V>[]) new NodePair[newSize];
+        int newSize = table.length * 3 / 2 + 1;
+        Pair<K,V>[] newTable = (Pair<K, V>[]) new Pair[newSize];
         System.arraycopy(table,0,newTable,0,table.length);
         table = newTable;
     }

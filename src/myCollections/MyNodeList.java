@@ -27,16 +27,28 @@ public abstract class MyNodeList<T> implements IMyQueue<T> {
     //удаляет элемент под индексом
     @Override
     public void remove(int index) {
-        int ind = 0;
-        Node<T> node = first;
-        while (node != last){
-            if(ind == index){
-                node.next.prev = node.prev;
-                node.prev.next = node.next;
-                size--;
+        int mid = size/2;
+        if (mid > index) {
+            Node<T> node = first;
+            for(int i=0; i< mid;i++){
+                if(i == index){
+                    node.next.prev = node.prev;
+                    node.prev.next = node.next;
+                    size--;
+                }
+                node = node.next;
             }
-            ind++;
-            node = node.next;
+        }
+        else if (index<size) {
+            Node<T> node = last;
+            for (int i = size - 1; i >= mid; i--) {
+                if (i == index) {
+                    node.next.prev = node.prev;
+                    node.prev.next = node.next;
+                    size--;
+                }
+                node = node.next;
+            }
         }
     }
 
@@ -87,15 +99,15 @@ public abstract class MyNodeList<T> implements IMyQueue<T> {
     @Override
     public String toString() {
         if(size == 0){
-            return "[]";
+            return "{}";
         }
-        String str = "[";
+        String str = "{";
         Node<T> node = first;
         while (node != last){
             str = str + node.elem + ", ";
             node = node.next;
         }
-        str = str + node.elem + "]";
+        str = str + node.elem + "}";
         return str;
     }
 }

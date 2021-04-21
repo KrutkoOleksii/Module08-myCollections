@@ -2,11 +2,11 @@ package myCollections;
 
 import java.util.Objects;
 
-class NodePair <K,V>{
+class Pair<K,V>{
     private K key;
     private V value;
 
-    public NodePair(K key, V value) {
+    public Pair(K key, V value) {
         this.key = key;
         this.value = value;
     }
@@ -27,8 +27,8 @@ class NodePair <K,V>{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NodePair<K, V> nodePair = (NodePair<K, V>) o;
-        return key.equals(nodePair.key) && Objects.equals(value, nodePair.value);
+        Pair<K, V> pair = (Pair<K, V>) o;
+        return key.equals(pair.key) && Objects.equals(value, pair.value);
     }
 
     @Override
