@@ -99,15 +99,15 @@ public abstract class MyNodeList<T> implements IMyQueue<T> {
     @Override
     public String toString() {
         if(size == 0){
-            return "{}";
+            return "[]";
         }
-        String str = "{";
+        String str = "[";
         Node<T> node = first;
         while (node != last){
             str = str + node.elem + ", ";
             node = node.next;
         }
-        str = str + node.elem + "}";
+        str = str + node.elem + "]";
         return str;
     }
 }

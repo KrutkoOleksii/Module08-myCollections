@@ -2,13 +2,17 @@ package myCollections;
 
 import java.util.Objects;
 
-class Pair<K,V>{
+class NodePair<K,V>{
     private K key;
     private V value;
+    private int hash;
+    NodePair<K,V> next;
 
-    public Pair(K key, V value) {
+    public NodePair(K key, V value, int hash, NodePair<K,V> next) {
         this.key = key;
         this.value = value;
+        this.hash = hash;
+        this.next = next;
     }
 
     public K getKey() {
@@ -27,8 +31,8 @@ class Pair<K,V>{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Pair<K, V> pair = (Pair<K, V>) o;
-        return key.equals(pair.key) && Objects.equals(value, pair.value);
+        NodePair<K, V> nodePair = (NodePair<K, V>) o;
+        return key.equals(nodePair.key) && Objects.equals(value, nodePair.value);
     }
 
     @Override
@@ -41,9 +45,10 @@ class Pair<K,V>{
 
     @Override
     public String toString() {
-        return "NP{" +
+        String k = (next == null) ? "" : ">>";
+        return "{" +
                 "K=" + key +
                 ", V=" + value +
-                '}';
+                "}"+k;
     }
 }

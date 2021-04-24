@@ -2,12 +2,14 @@ package myCollections.testCollections;
 
 import myCollections.*;
 
+import java.util.HashMap;
+
 public class Main {
 
     public static void main(String[] args) {
 
         String[] myArr = {"First", "Second", "Third", "Forth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth",
-                "Eleventh", "Twelfth", "Thirteenth", "Fourteenth", "Fifteenth"};
+                "Eleventh", "Twelfth", "Thirteenth", "Fourteenth", "Fifteenth","16","17","18","19","20","21","22","23","24","25"};
 
         System.out.println(" - - - - - - - - - - - ");
         System.out.println(" - - MyArrayList - - ");
@@ -23,9 +25,9 @@ public class Main {
         System.out.println(collection);
         System.out.println("   (size after adding= "+collection.size()+")");
         System.out.println("get index 2 - "+collection.get(2));
-        collection.remove(2);
+        System.out.println(collection.remove(14));
         System.out.println(collection);
-        System.out.println("   (size after remove [2] = "+collection.size()+")");
+        System.out.println("   (size after remove "+collection.size()+")");
         collection.clear();
         System.out.println(collection);
         System.out.println("   (size after clean= "+collection.size()+")");
@@ -109,7 +111,7 @@ public class Main {
         }
         System.out.println(map);
         System.out.println("   (size = "+map.size()+")");
-        for (int i=10;i<15;i++){
+        for (int i=10;i<25;i++){
             map.put(i, myArr[i]);
         }
         System.out.println(map);
@@ -123,5 +125,8 @@ public class Main {
         map.clear();
         System.out.println(map);
         System.out.println("    (size after clear= "+map.size()+")");
+
+        //HashMap<Object, Object> hashMap = new HashMap<>(1, 2);
+
     }
 }

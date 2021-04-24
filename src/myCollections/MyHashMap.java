@@ -1,57 +1,76 @@
 package myCollections;
 
 public class MyHashMap<K,V> implements IMyMap<K,V>{
-    private Pair<K,V>[] table;
+    private static NodePair[] table;
     private int size;
+    private final int DEFAULT_CAPACITY = 16;
 
     public MyHashMap() {
-        table = new Pair[10];
+        table = new NodePair[DEFAULT_CAPACITY];
         size = 0;
     }
 
     //добавляет пару ключ + значение
     @Override
     public void put(K key, V value) {
-
-        for(int i=0; i<size;i++){
-
-            if(key.equals(table[i].getKey())){
-               table[i].setValue(value);
-               return;
+        int index = calcHash(key);
+        NodePair<K,V> nodePair = table[index];
+        if (nodePair == null) {
+            table[index] = new NodePair<>(key, value, index, null);
+        }
+        if (nodePair != null) {
+            while (nodePair.next != null) {
+                if (key.equals(nodePair.getKey())) {
+                    // reset value
+                    nodePair.setValue(value);
+                    return;
+                }
+                nodePair = nodePair.next;
             }
+            if (key.equals(nodePair.getKey())) {
+                // reset value
+                nodePair.setValue(value);
+                return;
+            }
+            nodePair.next = new NodePair<K, V>(key, value, index, null);
         }
-        if(table.length==size){
-            resize();
-        }
-        Pair<K,V> pair = new Pair<>(key, value);
-        table[size++] = pair;
+        size++;
+    }
+
+    private int calcHash(K key) {
+        if(key==null) return 0;
+        return key.hashCode() & DEFAULT_CAPACITY-1;
     }
 
     //удаляет пару по ключу
     @Override
-    public void remove(Object key) {
-        int index = -1;
+    public NodePair<K,V> remove(Object key) {
         for(int i=0; i < table.length;i++){
-            if(key.equals(table[i].getKey())){
-               index = i;
-               break;
+            if(table[i] != null){
+                NodePair<K,V> nodePair = table[i];
+                if(key.equals(nodePair.getKey())) {
+                    table[i] = nodePair.next;
+                    size--;
+                    return nodePair;
+                }
+                while (nodePair.next != null){
+                    if (key.equals(nodePair.next.getKey())){
+                        NodePair<K,V> oldNodePair = nodePair.next;
+                        nodePair.next = nodePair.next.next;
+                        size--;
+                        return oldNodePair;
+                    }
+                    nodePair = nodePair.next;
+                }
             }
         }
-        if(index >= 0){
-            Pair<K,V>[] newTable = (Pair<K, V>[]) new Pair[table.length];
-            System.arraycopy(table,0,newTable,0,index);
-            if(index<size) {
-                System.arraycopy(table,index+1,newTable,index,size-index-1);
-            }
-            table = newTable;
-            size--;
-        }
+        return null;
     }
 
     //очищает коллекцию
     @Override
     public void clear(){
-        table = new Pair[10];
+        table = new NodePair[DEFAULT_CAPACITY];
         size = 0;
     }
 
@@ -64,26 +83,39 @@ public class MyHashMap<K,V> implements IMyMap<K,V>{
     //возвращает значение(Object value) по ключу
     @Override
     public V get(K key) {
-        for(int i=0; i < size;i++){
-            if(key.equals(table[i].getKey())){
-                return table[i].getValue();
+        for(int i=0; i < table.length;i++){
+            if(table[i] != null){
+                NodePair<K,V> nodePair = table[i];
+                if(key.equals(nodePair.getKey())) {
+                    return nodePair.getValue();
+                }
+                while (nodePair.next != null){
+                    if (key.equals(nodePair.next.getKey())){
+                        return nodePair.next.getValue();
+                    }
+                    nodePair = nodePair.next;
+                }
             }
         }
         return null;
     }
 
-    public void resize() {
-        int newSize = table.length * 3 / 2 + 1;
-        Pair<K,V>[] newTable = (Pair<K, V>[]) new Pair[newSize];
-        System.arraycopy(table,0,newTable,0,table.length);
-        table = newTable;
-    }
-
     @Override
     public String toString() {
         String arr = "[";
-        for(Object element: table) {
-            arr+=" "+element+" ";
+        for(int i=0; i < table.length;i++) {
+            if (table[i] != null) {
+                if (!arr.equals("[")) {
+                    arr += ", ";
+                }
+                NodePair<K, V> nodePair = table[i];
+                while (nodePair.next != null) {
+                    arr += nodePair.toString();
+
+                    nodePair = nodePair.next;
+                }
+                arr += nodePair.toString();
+            }
         }
         arr+="]";
         return arr;

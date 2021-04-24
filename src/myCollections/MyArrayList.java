@@ -32,13 +32,17 @@ public class MyArrayList<T> implements IList<T>{
     }
 
     @Override
-    public void remove(int index) {
+    public String remove(int index) {
+        if (index >= size){
+            return "index (for removing) "+index+" out of bounds for object array["+size+"]";
+        }
         Object[] newArr = new Object [myArrayList.length];
         System.arraycopy(myArrayList, 0, newArr, 0, index);
         // остальное сдвинуть на 1 влево
-        System.arraycopy(myArrayList, index+1, newArr, index, size-index);
+        System.arraycopy(myArrayList, index+1, newArr, index, size-index-1);
         size--;
         myArrayList = newArr;
+        return "remove index "+index;
     }
 
     @Override
@@ -62,12 +66,12 @@ public class MyArrayList<T> implements IList<T>{
 
     @Override
     public String toString() {
-        String arr = "{";
-        for(Object element: myArrayList) {
-            if(!arr.equals("{")) { arr+=", ";}
-            arr+=element;
+        String arr = "[";
+        for(int i = 0; i < size; i++) {
+            if(!arr.equals("[")) { arr+=", ";}
+            arr += myArrayList[i];
         }
-        arr+="}";
+        arr+="]";
         return arr;
     }
 }
