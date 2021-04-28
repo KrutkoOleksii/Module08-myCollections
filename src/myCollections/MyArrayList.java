@@ -32,9 +32,9 @@ public class MyArrayList<T> implements IList<T>{
     }
 
     @Override
-    public String remove(int index) {
+    public void remove(int index) {
         if (index >= size){
-            return "index (for removing) "+index+" out of bounds for object array["+size+"]";
+            return;
         }
         Object[] newArr = new Object [myArrayList.length];
         System.arraycopy(myArrayList, 0, newArr, 0, index);
@@ -42,7 +42,6 @@ public class MyArrayList<T> implements IList<T>{
         System.arraycopy(myArrayList, index+1, newArr, index, size-index-1);
         size--;
         myArrayList = newArr;
-        return "remove index "+index;
     }
 
     @Override

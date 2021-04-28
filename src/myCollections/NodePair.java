@@ -45,7 +45,7 @@ class NodePair<K,V>{
 
     @Override
     public String toString() {
-        String k = (next == null) ? "" : ">>";
+        String k = (next == null) ? "\n" : " ->>- ";
         return "{" +
                 "K=" + key +
                 ", V=" + value +

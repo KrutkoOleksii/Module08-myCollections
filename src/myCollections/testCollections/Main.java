@@ -9,7 +9,9 @@ public class Main {
     public static void main(String[] args) {
 
         String[] myArr = {"First", "Second", "Third", "Forth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth",
-                "Eleventh", "Twelfth", "Thirteenth", "Fourteenth", "Fifteenth","16","17","18","19","20","21","22","23","24","25"};
+                "Eleventh", "Twelfth", "Thirteenth", "Fourteenth", "Fifteenth","16","17","18","19","20",
+                "21","22","23","24","25","26","27","28","29","30",
+                "31","32","33","34","35","36","37","38","39","40","41"};
 
         System.out.println(" - - - - - - - - - - - ");
         System.out.println(" - - MyArrayList - - ");
@@ -25,7 +27,7 @@ public class Main {
         System.out.println(collection);
         System.out.println("   (size after adding= "+collection.size()+")");
         System.out.println("get index 2 - "+collection.get(2));
-        System.out.println(collection.remove(14));
+        collection.remove(14);
         System.out.println(collection);
         System.out.println("   (size after remove "+collection.size()+")");
         collection.clear();
@@ -111,7 +113,7 @@ public class Main {
         }
         System.out.println(map);
         System.out.println("   (size = "+map.size()+")");
-        for (int i=10;i<25;i++){
+        for (int i=10; i<41; i++){
             map.put(i, myArr[i]);
         }
         System.out.println(map);
